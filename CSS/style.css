@@ -1,0 +1,98 @@
+* {
+  box-sizing: border-box;
+}
+
+header {
+  position: relative;
+  padding-bottom: 20px;
+}
+
+
+#zone-panier {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  text-align: center;
+}
+
+#panier {
+  width: 100px;
+  cursor: pointer;
+  display: block;
+}
+
+#nb-articles {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  min-width: 26px;
+  height: 26px;
+  line-height: 26px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#total {
+  margin: 5px 0 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #b08d3c;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+}
+
+h1, h2 {
+  text-align: center;
+  color: #b08d3c;
+  text-transform: uppercase;
+}
+
+/* La grille : 4 colonnes */
+#photo {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  max-width: 1400px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+/* Une carte */
+.carte {
+  border: 3px solid #b08d3c;
+  border-radius: 40px;
+  padding: 30px;
+  text-align: center;
+}
+
+.carte img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 40px;
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.6);
+}
+
+.carte p {
+  margin: 10px 0;
+  font-size: 20px;
+}
+
+.carte button {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.carte img {
+  cursor: pointer;
+}
+
+
