@@ -1,0 +1,10 @@
+/* Grille : 4 colonnes */
+
+.liste_produits {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  max-width: 1400px;
+  margin: 30px auto;
+  padding: 0 20px;
+}

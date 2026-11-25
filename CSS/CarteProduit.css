@@ -1,0 +1,32 @@
+/* Une carte produit */
+.shape_carte_produit {
+  border: 3px solid #b08d3c;
+  border-radius: 40px;
+  padding: 30px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.shape_carte_produit div {
+  margin: 10px 0;
+}
+
+.image_produit {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 40px;
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
+.div_actions button {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.div_actions span {
+  margin: 0 8px;
+}
+
