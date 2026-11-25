@@ -1,137 +1,102 @@
-const  images = [
-	{
-		"id": 1,
-		"nom": "Femme noire",
-		"prix": 25000,
-		"categorie": "art",
-		"url": "images/blackness.jpg"
-	},
-	{
-		"id": 2,
-		"nom": "Girls in Tech",
-		"prix": 18000,
-		"categorie": "technologie",
-		"url": "images/deux.jpg"
-	},
-	{
-		"id": 3,
-		"nom": "Femme musulmane",
-		"prix": 27500,
-		"categorie": "religion",
-		"url": "images/muslima.jpg"
-	},
-	{
-		"id": 4,
-		"nom": "Jigeen ci Tech",
-		"prix": 20000,
-		"categorie": "technologie",
-		"url": "images/trois.jpg"
-	},
-	{
-		"id": 5,
-		"nom": "Les gadgets high tech",
-		"prix": 19500,
-		"categorie": "technologie",
-		"url": "images/un.jpeg"
-	},
-	{
-		"id": 6,
-		"nom": "Centre de controle",
-		"prix": 12500,
-		"categorie": "papier peint",
-		"url": "images/wallpaper-1.jfif"
-	},
-	{
-		"id": 17,
-		"nom": "Dark Army",
-		"prix": 17000,
-		"categorie": "papier peint",
-		"url": "images/wallpaper-2.jpeg"
-	},
-	{
-		"id": 20,
-		"nom": "Champions d'Afrique",
-		"prix": 22000,
-		"categorie": "papier peint",
-		"url": "images/wallpaper-3.jpg"
-	},
-	{
-		"id": 21,
-		"nom": "Bureau Mac OS",
-		"prix": 12000,
-		"categorie": "papier peint",
-		"url": "images/wallpaper-4.png"
-	},
-	{
-		"id": 22,
-		"nom": "Bureau Mac OS bleu",
-		"prix": 12000,
-		"categorie": "papier peint",
-		"url": "images/wallpaper-5.jpg"
-	},
-	{
-		"id": 23,
-		"nom": "Logo Ubuntu",
-		"prix": 12000,
-		"categorie": "papier peint",
-		"url": "images/wallpaper-6.jpg"
-	},
-	{
-		"id": 24,
-		"nom": "Cyber Task Force",
-		"prix": 12000,
-		"categorie": "papier peint",
-		"url": "images/wallpaper-7.jpg"
-	},
-	{
-		"id": 25,
-		"nom": "Regard profond",
-		"prix": 17500,
-		"categorie": "papier peint",
-		"url": "images/wallpaper-8.jpg"
-	},
-	{
-		"id": 26,
-		"nom": "Administrateur",
-		"prix": 12000,
-		"categorie": "papier peint",
-		"url": "images/wallpaper-9.jpg"
-	},
-	{
-		"id": 7,
-		"nom": "Cybercriminalité",
-		"prix": 12001,
-		"categorie": "papier peint",
-		"url": "images/wallpaper-10.jfif"
-	},
-	{
-		"id": 8,
-		"nom": "Ldji",
-		"prix": 90000000,
-		"categorie": "papier peint",
-		"url": "images/ndao_Elhadji.jpeg"
-	}
-];
+// On importe le tableau "pictures" depuis le fichier pictures.js
+import { pictures } from "./pictures.js";
 
+/* 
+   CLASSE 1 : CarteProduit
+   Représente UN produit : ses infos + la quantité choisie.*/
+class CarteProduit {
+    constructor(id, nom, prix, categorie, url) {
+        this.id = id;
+        this.nom = nom;
+        this.prix = prix;
+        this.categorie = categorie;
+        this.url = url;
+        this.quantite = 0; // au départ, rien n'est choisi
+    }
 
-let currentImage = '';
+    ajouter() {
+        this.quantite = this.quantite + 1;
+    }
 
-// quantité choisie pour chaque image : { id: quantité }
-const quantites = {};
+    retirer() {
+        if (this.quantite > 0) {
+            this.quantite = this.quantite - 1;
+        }
+    }
 
-for (const image of images) {
-    quantites[image.id] = 0;   // au départ, rien n'est choisi
-
-    currentImage += `
-        <div class="carte">
-			<img src="${image.url}" alt="${image.nom}" onclick="ouvrirPopup(${image.id})">
-			<p>${image.nom}</p>
-			<p>${image.prix} CFA</p>
-			<button onclick="modifQuantite(${image.id}, 'ajouter')">+</button>
-			<span class="qte-${image.id}">0</span>
-			<button onclick="modifQuantite(${image.id}, 'retirer')">-</button>
-        </div>
-    `;
+    // Fabrique le HTML de la carte (ne l'affiche pas, renvoie juste du texte)
+    // data-id     : à quel produit appartient le clic
+    // data-action : ce que fait le bouton (ajouter ou retirer)
+    // data-qte    : repère le chiffre à mettre à jour
+    rendre() {
+        return `
+            <div class="shape_carte_produit">
+                <img class="image_produit" src="${this.url}" alt="${this.nom}" data-id="${this.id}">
+                <div>${this.nom}</div>
+                <div>${this.prix} CFA</div>
+                <div class="div_actions">
+                    <button data-id="${this.id}" data-action="ajouter">+</button>
+                    <span data-qte="${this.id}">${this.quantite}</span>
+                    <button data-id="${this.id}" data-action="retirer">-</button>
+                </div>
+            </div>
+        `;
+    }
 }
-photo.innerHTML += currentImage;
 
+/*   CLASSE 2 : ListeProduit
+   Contient toutes les cartes et calcule le résumé du panier.*/
+class ListeProduit {
+    constructor(pictures) {
+        this.carteProduits = [];
+        // On crée une CarteProduit pour chaque objet du tableau
+        for (const picture of pictures) {
+            this.carteProduits.push(
+                new CarteProduit(picture.id, picture.nom, picture.prix, picture.categorie, picture.url)
+				// CarteProduit{pictures} est aussi possible
+            );
+        }
+    }
+
+    // Retrouve une carte grâce à son id
+    trouver(id) {
+        return this.carteProduits.find(carte => carte.id === id);
+    }
+
+    // Nombre total d'articles choisis
+    nombreArticles() {
+        let nombre = 0;
+        for (const carte of this.carteProduits) {
+            nombre = nombre + carte.quantite;
+        }
+        return nombre;
+    }
+
+    // Somme totale : quantité x prix, pour chaque carte
+    montantTotal() {
+        let total = 0;
+        for (const carte of this.carteProduits) {
+            total = total + carte.quantite * carte.prix;
+        }
+        return total;
+    }
+
+    // Fabrique le HTML de toute la grille
+    rendre() {
+        let rendu = '';
+        for (const carteProduit of this.carteProduits) {
+            rendu += carteProduit.rendre();
+        }
+        return `<div class="liste_produits">${rendu}</div>`;
+    }
+}
+
+
+const liste_produits = new ListeProduit(pictures);
+
+const photo = document.getElementById('photo');
+const popup = document.getElementById('popup');  // popup référence code ligthbox de ing1
+const popupContenu = document.getElementById('popup-contenu');
+
+// On affiche la grille dans #photo
+photo.innerHTML = liste_produits.rendre();

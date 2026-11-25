@@ -1,4 +1,4 @@
-[
+export const pictures = [
 	{
 		"id": 1,
 		"nom": "Femme noire",
