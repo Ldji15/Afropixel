@@ -1,0 +1,97 @@
+/* Le petit zéro sur le coin du panier */
+#nb-articles {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  min-width: 26px;
+  height: 26px;
+  line-height: 26px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* La carte du panier, en haut à gauche */
+#resume-panier {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 320px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background-color: white;
+  border: 3px solid #b08d3c;
+  border-radius: 25px;
+  padding: 20px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+#resume-panier[hidden] {
+  display: none;
+}
+
+#resume-panier h3 {
+  margin: 0 0 10px;
+  text-align: center;
+  color: #b08d3c;
+}
+
+#resume-panier table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#resume-panier td {
+  padding: 6px 4px;
+  border-bottom: 1px solid #ddd;
+}
+
+.resume_total {
+  text-align: right;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+#fermer-panier {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  border: none;
+  background: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#resume-panier th {
+  text-align: left;
+  font-size: 14px;
+  color: #b08d3c;
+  border-bottom: 2px solid #b08d3c;
+  padding: 6px 4px;
+}
+
+#resume-panier td {
+  font-size: 14px;
+}
+
+#commander {
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: #b08d3c;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#commander:hover {
+  opacity: 0.85;
+}

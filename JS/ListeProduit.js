@@ -20,6 +20,29 @@ import { CarteProduit } from "./CarteProduit.js";
         return this.carteProduits.find(carte => carte.id === id);
     }
 
+        // Nombre total d'articles choisis
+    nombreArticles() {
+        let nombre = 0;
+        for (const carte of this.carteProduits) {
+            nombre = nombre + carte.quantite;
+        }
+        return nombre;
+    }
+
+    // Somme totale : quantité x prix, pour chaque carte
+    montantTotal() {
+        let total = 0;
+        for (const carte of this.carteProduits) {
+            total = total + carte.quantite * carte.prix;
+        }
+        return total;
+    }
+
+    // Uniquement les produits dont la quantité est supérieure à 0
+    articlesChoisis() {
+        return this.carteProduits.filter(carte => carte.quantite > 0);
+    }
+
     // Fabrique le HTML de toute la grille
     rendre() {
         let rendu = '';

@@ -12,16 +12,29 @@ export class CarteProduit {
         this.quantite = 0; // au départ, rien n'est choisi
     }
 
+    // Augmente la quantité de 1
+    ajouter() {
+        this.quantite = this.quantite + 1;
+    }
+
+    // Diminue la quantité de 1 (0 est le minimum)
+    retirer() {
+        if (this.quantite > 0) {
+            this.quantite = this.quantite - 1;
+        }
+    }
+
+
     // Fabrique le HTML de la carte (ne l'affiche pas, renvoie juste du texte)
     // data-id     : à quel produit appartient le clic
     // data-action : ce que fait le bouton (ajouter ou retirer)
-    // data-qte    : repère le chiffre à mettre à jour
+    // data-qte    : repère le chiffre à mettre à jour 
     rendre() {
         return `
             <div class="shape_carte_produit">
                 <img class="image_produit" src="${this.url}" alt="${this.nom}" data-id="${this.id}">
                 <div>${this.nom}</div>
-                <div>${this.prix} CFA</div>
+                <div>${this.prix}F CFA</div>
                 <div class="div_actions">
                     <button data-id="${this.id}" data-action="ajouter">+</button>
                     <span data-qte="${this.id}">${this.quantite}</span>
